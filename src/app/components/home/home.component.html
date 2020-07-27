@@ -1,0 +1,69 @@
+<div class="ui inverted dimmer" [class.active]="loading">
+    <div class="ui text loader">Loading...</div>
+</div>
+<p></p>
+
+<section class="header">
+    <div class="title">
+        <h4>Totla Cases World Wide</h4>
+        <hr>
+    </div>
+
+    <div class="body">
+        <dashboard-card [totalConfirmed]='totalConfirmed' [totalActive]='totalActive' [totalDeath]='totalDeath'
+            [totalRecovered]='totalRecovered'></dashboard-card>
+    </div>
+</section>
+<hr>
+
+
+
+
+<hr>
+<div class="ui form">
+    <div class="inline fields">
+        <label for="radtitle">Select Case type:</label>
+        <div class="radbtn row">
+            <div class="field col col-4 col-md-auto">
+                <div class="ui radio checkbox">
+                    <input type="radio" id="c" value="c" #c (click)='updateChart(c)' name="casetype" checked=""
+                        tabindex="0" class="hidden">
+                    <label for="c">Confirmed</label>
+                </div>
+            </div>
+            <div class="field col col-4 col-md-auto">
+                <div class="ui radio checkbox">
+                    <input type="radio" id="d" value="d" #d (click)='updateChart(d)' name="casetype" tabindex="0"
+                        class="hidden">
+                    <label for="d">Deaths</label>
+                </div>
+            </div>
+            <div class="field col col-4 col-md-auto">
+                <div class="ui radio checkbox">
+                    <input type="radio" id="r" value="r" #r (click)='updateChart(r)' name="casetype" tabindex="0"
+                        class="hidden">
+                    <label for="r">Recovered</label>
+                </div>
+            </div>
+            <div class="field col col-4 col-md-auto">
+                <div class="ui radio checkbox">
+                    <input type="radio" id="a" value="a" #a (click)='updateChart(a)' name="casetype" tabindex="0"
+                        class="hidden">
+                    <label for="a">Active</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="charts">
+        <div class="row">
+            <div class="col columnchart col-12 col-md-6 ">
+                <google-chart [type]="chart.ColumnChart" [height]="chart.height" [data]="datatable"
+                    [options]="chart.options" style="width: 100%;"></google-chart>
+            </div>
+            <div class="col piechart col-12 col-md-6">
+                <google-chart [type]="chart.PieChart" [height]="chart.height" [data]="datatable"
+                    [options]="chart.options" style="width: 100%;"></google-chart>
+            </div>
+        </div>
+    </section>

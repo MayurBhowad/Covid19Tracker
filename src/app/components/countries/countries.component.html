@@ -1,0 +1,65 @@
+<div class="ui inverted dimmer" [class.active]="loading">
+    <div class="ui text loader">Loading...</div>
+</div>
+<p></p>
+
+<section class="header">
+    <div class="title">
+        <h4>Select Country for countrywise Statistics</h4>
+        <hr>
+    </div>
+    <div class="counrty-input mt-4">
+        <div class="form-group col-lg-5 mx-auto">
+            <label for="c">Select Country</label>
+            <select name="" id="c" class="form-control" #input (change)="updateValues(input.value)">
+                <option value="{{country}}" *ngFor="let country of countries">{{country}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="title m-3">
+        <h4>{{selectedCountry}}</h4>
+        <hr>
+    </div>
+    <dashboard-card [totalConfirmed]='totalConfirmed' [totalActive]='totalActive' [totalDeath]='totalDeath'
+        [totalRecovered]='totalRecovered'></dashboard-card>
+</section>
+
+<section class="statistics">
+
+    <div class="title">
+        <h4>Statistics</h4>
+        <hr>
+    </div>
+
+</section>
+
+<div class=" bg-white text-center">
+    <div class="row">
+        <div class="col col-12 col-md-6">
+            <google-chart [type]="chart.LineChart" [height]="chart.height" [data]="datatable" [options]="chart.options"
+                style="width: 90%;"></google-chart>
+        </div>
+        <div class="col col-12 col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Date</th>
+                        <th>Cases</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cases of selectedCountryData; index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{cases.date | date}}</td>
+                        <td>{{cases.cases}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!--  -->

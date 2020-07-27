@@ -1,0 +1,61 @@
+.card-count{
+    margin: 10px;
+}
+
+.ui {
+    .fields{
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        .radbtn{
+            display: flex;
+            justify-content: center;
+            .field{
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .ui {
+        .fields{
+            text-align: center;
+            margin-top: 20px;
+            .radbtn{
+                display: flex;
+                justify-content: center;
+                .field{
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+    .ui {
+        .fields{
+            text-align: center;
+            margin-top: 20px;
+            .radbtn{
+                justify-content: center;
+                overflow: hidden;
+                .field{
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    // .charts{
+    //     display: grid;
+    //     grid-template-columns: 1fr 1fr;
+    //     grid-template-rows: 3em 30em;
+
+    // }
+}
