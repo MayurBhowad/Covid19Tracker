@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   totalRecovered = 0;
   datatable = [];
   loading = true;
+  dataTill;
 
   globalData: GlobalDataSummary[];
 
@@ -41,16 +42,16 @@ export class HomeComponent implements OnInit {
     this.globalData.forEach(cs => {
       let value: number;
       if (caseType == 'c') {
-        if (cs.confirmed > 2000)
+        if (cs.confirmed > 100000)
           value = cs.confirmed
       } else if (caseType == 'a') {
-        if (cs.active > 2000)
+        if (cs.active > 100000)
           value = cs.active
       } else if (caseType == 'r') {
-        if (cs.recovered > 2000)
+        if (cs.recovered > 100000)
           value = cs.recovered
       } else if (caseType == 'd') {
-        if (cs.deaths > 1000)
+        if (cs.deaths > 10000)
           value = cs.deaths
       }
 
@@ -61,7 +62,6 @@ export class HomeComponent implements OnInit {
 
 
   }
-
 
 
 
@@ -85,11 +85,14 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       }
     });
+    this.dataTill = this.dataAPIService.getDate();
+
   }
 
   updateChart(input: HTMLInputElement) {
     this.initChart(input.value)
   }
+
 
 
 

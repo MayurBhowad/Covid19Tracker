@@ -7,6 +7,14 @@ const PORT = process.env.PORT || 4001;
 
 const APP_PATH = './dist/covid19Tracker';
 
+
 app.use('/', express.static(path.join(__dirname, APP_PATH)))
     .get('/*', (req, res) => res.sendFile(path.join(__dirname, APP_PATH + '/index.html')))
     .listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
+
+
+
+
+// var nowDate = new Date();
+// var date = nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();

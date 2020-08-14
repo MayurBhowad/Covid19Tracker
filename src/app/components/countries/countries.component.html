@@ -40,18 +40,18 @@
             <google-chart [type]="chart.LineChart" [height]="chart.height" [data]="datatable" [options]="chart.options"
                 style="width: 90%;"></google-chart>
         </div>
-        <div class="col col-12 col-md-6">
-            <table class="table">
+        <div class="col col-12 col-md-6 table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table table-bordered table-striped mb-0">
                 <thead>
                     <tr>
-                        <th>Sno.</th>
-                        <th>Date</th>
-                        <th>Cases</th>
+                        <th scope="col">Sno.</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Cases</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let cases of selectedCountryData; index as i">
-                        <td>{{i+1}}</td>
+                        <td scope="row">{{i+1}}</td>
                         <td>{{cases.date | date}}</td>
                         <td>{{cases.cases}}</td>
                     </tr>

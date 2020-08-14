@@ -108,6 +108,19 @@ hr{
     font-weight: 600;
 }
 
+.table{
+    margin-top: 80px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+
 @media screen and (max-width: 900px){
     h1 {font-size: 56px;}
 h2 {font-size: 36px;}
