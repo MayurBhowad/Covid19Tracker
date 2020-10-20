@@ -10,25 +10,31 @@ import { DateWiseData } from '../date-wise-data';
 export class DataAPIServiceService {
 
   getDate() {
-    const today = new Date()
-    const yesterday = new Date(today)
+    // const today = new Date()
+    // const yesterday = new Date(today)
 
-    yesterday.setDate(yesterday.getDate() - 2)
+    // yesterday.setDate(yesterday.getDate() - 2)
 
-    var month = month > 9 ? (yesterday.getMonth() + 1) : ('0' + (yesterday.getMonth() + 1));
-    var day = day > 9 ? (yesterday.getMonth() + 1) : ('0' + (yesterday.getMonth() + 1));
+    // var month = (month > 9) ? (yesterday.getMonth() + 1) : ('0' + (yesterday.getMonth()));
+    // var day = day > 9 ? (yesterday.getMonth() + 1) : ('0' + (yesterday.getMonth() + 1));
 
-    var date = month + '-' + yesterday.getDate() + '-' + yesterday.getFullYear()
+    // var date = month + '-' + yesterday.getDate() + '-' + yesterday.getFullYear()
+    var d = new Date();
 
-    // return console.log(date);
-    return date;
+    var date = d.getDate() - 2;
+    var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = d.getFullYear();
+    const myDate = `${month}-${date}-${year}`;
+    // return console.log(myDate);
+    return myDate;
   }
 
   private date = this.getDate();
 
 
 
-  // private globalDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-13-2020.csv`;
+
+  // private globalDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/10-19-2020.csv`;
   private globalDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/${this.getDate()}.csv`;
   private dateWiseDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv`;
 
