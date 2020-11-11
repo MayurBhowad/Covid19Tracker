@@ -10,15 +10,6 @@ import { DateWiseData } from '../date-wise-data';
 export class DataAPIServiceService {
 
   getDate() {
-    // const today = new Date()
-    // const yesterday = new Date(today)
-
-    // yesterday.setDate(yesterday.getDate() - 2)
-
-    // var month = (month > 9) ? (yesterday.getMonth() + 1) : ('0' + (yesterday.getMonth()));
-    // var day = day > 9 ? (yesterday.getMonth() + 1) : ('0' + (yesterday.getMonth() + 1));
-
-    // var date = month + '-' + yesterday.getDate() + '-' + yesterday.getFullYear()
     var d = new Date();
 
     var date = d.getDate() - 2;
