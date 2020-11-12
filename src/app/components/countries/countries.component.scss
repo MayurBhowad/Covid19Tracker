@@ -7,3 +7,34 @@
     width: 20%;
   }
 }
+
+.chart-legend-info{
+  display: flex;
+  // margin: 10px;
+  width: 80%;
+  justify-content: space-evenly;
+  text-align: center;
+  
+  .col-1{
+    display: flex;
+    margin: 0 10px;
+    p{
+      padding: 0 8px;
+    }
+    .square-B{
+      background-color: #339CFF;
+      height: 5px;
+      width: 7px;
+    }
+    .square-B{
+      background-color: #23D000;
+      height: 5px;
+      width: 7px;
+    }
+    .square-B{
+      background-color: #E20202;
+      height: 5px;
+      width: 7px;
+    }
+  }
+}

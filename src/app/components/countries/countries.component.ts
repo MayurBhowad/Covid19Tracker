@@ -30,6 +30,7 @@ export class CountriesComponent implements OnInit {
   datatable = [];
   dataPerDay1 = [];
   recoveredDataPerDay1 = [];
+  deathsDataPerDay1 = [];
   selectedCountry = 'Afghanistan';
   selectedCountryData: DateWiseData[];
   loading = true;
@@ -43,12 +44,13 @@ export class CountriesComponent implements OnInit {
     private diseaseService: DiseaseService
   ) {}
 
-  chart = {
+  lineChart = {
     LineChart: "LineChart",
-    ColumnChart: "ColumnChart",
+    title: 'New Cases Per Day',
     height: 500,
     options: {
-      colors: ['#AB0D06', '#007329'],
+      title: 'Total Cases Timeline',
+      colors: ['#339CFF', '#23D000', '#E20202'],
       animation: {
         duration: 1000,
         easing: "out",
@@ -56,6 +58,20 @@ export class CountriesComponent implements OnInit {
       legend:{position: 'bottom'},
     },
   };
+  
+  columnChart = {
+    ColumnChart: "ColumnChart",
+    height: 500,
+    options: {
+      title: `New Cases Per Day`,
+      colors: ['#AB0D06'],
+      animation: {
+        duration: 1000,
+        easing: "out",
+      },
+      legend:{position: 'bottom'},
+    }
+  }
 
   // initChart() {
   //   // this.dataPerDay1 = []
@@ -137,6 +153,36 @@ export class CountriesComponent implements OnInit {
     });
   }
 
+  convertedServerData(PureServerData){
+
+    let serverData = PureServerData;
+    let FinalList= [];
+
+    let serverData1 = [];
+
+    serverData = JSON.stringify(serverData);
+
+    serverData = serverData.substring(1, serverData.length-1);
+    serverData1.push(serverData.split(','));
+
+    let dataDate = [];
+    serverData1[0].map(e => dataDate.push(e));
+
+    dataDate.map(e => {
+      let oneRec = [];
+      let seB = e.substring(0,e.indexOf(":") )
+      let seA = e.substring(e.indexOf(":") +1 )
+      let dateString = seB 
+      let newDate = new Date(dateString);
+      oneRec.push(newDate);
+      oneRec.push(+seA);
+      FinalList.push(oneRec)
+    })
+    // console.log(FinalList);
+    return FinalList;
+
+  }
+
   getCountryDateWiseData(selectedCountry, days):void {
     this.diseaseService
       .getCountryDateWiseData(selectedCountry, days)
@@ -145,6 +191,8 @@ export class CountriesComponent implements OnInit {
       {
         let data;
         data =(ress.timeline.cases);
+        
+        
         
         
         let data1 = [];
@@ -174,27 +222,30 @@ export class CountriesComponent implements OnInit {
           this.dataPerDay1.push(oneRec)
           this.selectedCountryData.push(dateRec);
         })
+        // console.log(this.dataPerDay1);
+        
+        this.recoveredDataPerDay1 = this.convertedServerData(ress.timeline.recovered);
+        this.deathsDataPerDay1 = this.convertedServerData(ress.timeline.deaths);
+        // let recoveredData;
+        // let recoveredData1 = [];
+        // let recoveredDataPerDay = [];
+        // this.recoveredDataPerDay1 = [];
+        // recoveredData  = JSON.stringify(ress.timeline.recovered);
+        // recoveredData = recoveredData.substring(1,recoveredData.length-1);
+        // recoveredData1.push(recoveredData.split(','));
+        // recoveredData1[0].map(e =>recoveredDataPerDay.push(e))
 
-        let recoveredData;
-        let recoveredData1 = [];
-        let recoveredDataPerDay = [];
-        this.recoveredDataPerDay1 = [];
-        recoveredData  = JSON.stringify(ress.timeline.recovered);
-        recoveredData = recoveredData.substring(1,recoveredData.length-1);
-        recoveredData1.push(recoveredData.split(','));
-        recoveredData1[0].map(e =>recoveredDataPerDay.push(e))
-
-        recoveredDataPerDay.map(e => {
-          let oneRec = [];
-          let dateRec: any = {}
-          let seB = e.substring(0,e.indexOf(":") )
-          let seA = e.substring(e.indexOf(":") +1 )
-          let dateString = seB 
-          let newDate = new Date(dateString);
-          oneRec.push(newDate);
-          oneRec.push(+seA);
-          this.recoveredDataPerDay1.push(oneRec)
-        })
+        // recoveredDataPerDay.map(e => {
+        //   let oneRec = [];
+        //   let dateRec: any = {}
+        //   let seB = e.substring(0,e.indexOf(":") )
+        //   let seA = e.substring(e.indexOf(":") +1 )
+        //   let dateString = seB 
+        //   let newDate = new Date(dateString);
+        //   oneRec.push(newDate);
+        //   oneRec.push(+seA);
+        //   this.recoveredDataPerDay1.push(oneRec)
+        // })
 
         // console.log(this.dataPerDay1);
         // console.log(this.selectedCountryData);
@@ -208,7 +259,7 @@ export class CountriesComponent implements OnInit {
         
         this.TodaysData = []
         let todaysData0 = [];
-        // this.TotalData.push(["Date", "cases", "Recovered"]);
+        this.TotalData.push();
 
         for( let i = 0; i< this.dataPerDay1.length; i++){
           totalDataArr = [];
@@ -217,6 +268,7 @@ export class CountriesComponent implements OnInit {
           todaysData0.push(this.dataPerDay1[i][0])
           totalDataArr.push(this.dataPerDay1[i][1])
           totalDataArr.push(this.recoveredDataPerDay1[i][1])
+          totalDataArr.push(this.deathsDataPerDay1[i][1])
 
           if(i + 1 < this.dataPerDay1.length){
             let todaysNewCases = this.dataPerDay1[i + 1][1] - this.dataPerDay1[i][1]
@@ -234,7 +286,7 @@ export class CountriesComponent implements OnInit {
         // console.log(this.TotalData);
         // console.log(this.TodaysData);
         
-        
+      
 
         
       }

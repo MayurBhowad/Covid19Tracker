@@ -46,7 +46,7 @@
     <h5>Days Range</h5>
     <select name="days-range" id="days-range" [(ngModel)]="days" (change)="onChangeDays($event)">
       <option *ngFor="let days of daysRange" value="{{ days }}">
-        {{ days }} days
+        Last {{ days }} days
       </option>
     </select>
   </div>
@@ -54,12 +54,29 @@
 
 <div class="bg-white text-center">
   <div class="row">
+    
     <div class="col col-12 col-md-6">
+      <div class="chart-legend-info">
+        <div class="col-1">
+          <div class="square square-B"></div>
+          <p style="background-color: #339CFF;">Cases</p>
+        </div>
+        <div class="col-1">
+          <div class="square square-R">
+  
+          </div>
+          <p style="background-color: #23D000;">Recover</p>
+        </div>
+        <div class="col-1">
+          <div class="square square-D"></div>
+          <p style="background-color: #E20202;">Deaths</p>
+        </div>
+      </div>
       <google-chart
-        [type]="chart.LineChart"
-        [height]="chart.height"
+        [type]="lineChart.LineChart"
+        [height]="lineChart.height"
         [data]="TotalData"
-        [options]="chart.options"
+        [options]="lineChart.options"
         style="width: 90%"
       ></google-chart>
     </div>
@@ -81,8 +98,8 @@
       </table>
     </div> -->
     <div class="col col-12 col-md-6">
-      <google-chart [type]="chart.ColumnChart" [height]="chart.height" [data]="TodaysData"
-                    [options]="chart.options" style="width: 100%;"></google-chart>
+      <google-chart [type]="columnChart.ColumnChart" [height]="columnChart.height" [data]="TodaysData"
+                    [options]="columnChart.options" style="width: 100%;"></google-chart>
     </div>
   </div>
 </div>

@@ -86,6 +86,13 @@ export class HomeComponent implements OnInit {
       }
     });
     this.dataTill = this.dataAPIService.getDate();
+    let newDate =  new Date((this.dataTill))
+    this.dataTill = newDate.toDateString();
+    // console.log(newDate.toDateString());
+    
+    // // newDate.split(' ')
+    // console.log(this.dataTill);
+    
 
   }
 
