@@ -15,8 +15,8 @@ export class DataAPIServiceService {
     var date = d.getDate() - 2;
     var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
     var year = d.getFullYear();
-    const myDate = `${month}-${date<10 ? 0 : ''}${date}-${year}`;
-    // return console.log(myDate);
+    const myDate = `${month < 10 ? 0 : ''}${month}-${date<10 ? 0 : ''}${date}-${year}`;
+    console.log(myDate);
     return myDate;
   }
 
