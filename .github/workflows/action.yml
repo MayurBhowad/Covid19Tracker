@@ -16,5 +16,5 @@ jobs:
 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "redstrein"
+          heroku_app_name: "covid-19-tracker-two"
           heroku_email: "mayurbhowad1995@gmail.com"
