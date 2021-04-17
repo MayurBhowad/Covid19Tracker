@@ -265,7 +265,9 @@ export class CountriesComponent implements OnInit {
           totalDataArr = [];
           todaysData0 = [];
           totalDataArr.push(this.dataPerDay1[i][0])
-          todaysData0.push(this.dataPerDay1[i][0])
+          todaysData0.push(this.dataPerDay1[i+1][0])
+          console.log(this.dataPerDay1);
+          
           totalDataArr.push(this.dataPerDay1[i][1])
           totalDataArr.push(this.recoveredDataPerDay1[i][1])
           totalDataArr.push(this.deathsDataPerDay1[i][1])
@@ -275,8 +277,9 @@ export class CountriesComponent implements OnInit {
             // console.log(todaysNewCases);
             todaysData0.push(todaysNewCases);
           } else {
-            todaysData0.push(0);
+            // todaysData0.pop();
           }
+          // console.log(todaysData0);
           
 
           this.TotalData.push(totalDataArr)
