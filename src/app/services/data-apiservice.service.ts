@@ -12,14 +12,28 @@ export class DataAPIServiceService {
   getDate() {
     var d = new Date();
     
-    var date = d.getDate() ;
-    console.log(date);
     
-    var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
-    var year = d.getFullYear();
+    const today = new Date()
+    const yesterday = new Date(today)
+
+    yesterday.setDate(yesterday.getDate() - 1)
+
+    today.toDateString()
+    yesterday.toDateString()
+
+    // console.log(d);
+    // console.log(yesterday);
+    
+    // var date = d.getDate() ;
+    // var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    // var year = d.getFullYear();
+    var date = yesterday.getDate() ;
+    var month = yesterday.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = yesterday.getFullYear();
     const myDate = `${month<10? '0': ''}${month}-${date<10 ? '0': ''}${date}-${year}`;
     // const myDate = `${month < 10 ? '': ''}-${date<10 ? 0 : ''}${date}-${year}`;
     console.log(myDate);
+
     return myDate;
   }
 
@@ -28,7 +42,7 @@ export class DataAPIServiceService {
 
 
 
-  private globalDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/01-31-2021.csv`;
+  private globalDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/${this.date}.csv`;
   // private globalDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/${this.getDate()}.csv`;
   private dateWiseDataUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv`;
 
